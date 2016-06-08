@@ -76,6 +76,19 @@ describe('REST API', function(){
             });
         });
 
+        it('gets all existing ones', function(done){
+            request
+            .get("/users")
+            .use(prefixREST)
+            .end(function(err,res){
+                should.not.exist(err);
+                res.status.should.equal(200);
+                var expectedUsers = [ {"id":"7", "name":"jane"},
+                                     {"id":"8", "name":"john"} ];
+                equalObjects(JSON.parse(res.text), expectedUsers).should.equal(true);
+                done();
+            });
+        });
         it('gets the non-existing one', function(done){
             request
             .get("/user/NONEXISTING")
