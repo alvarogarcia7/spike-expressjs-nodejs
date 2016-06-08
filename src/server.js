@@ -2,7 +2,10 @@ var express = require('express');
 
 var app = express();
 
-var db = [ {'id':'8', 'name':'john'} ]; 
+var db = [ 
+    {'id':'8', 'name':'john'},
+    {'id':'7', 'name':'jane'},
+]; 
 
 app.get('/user/:userId', function(req, res) {
 
