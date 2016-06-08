@@ -52,7 +52,7 @@ describe('exercising the test framework', function(){
 describe('REST API', function(){
     before(function(){
         var startTheServer = function(){
-            require("../../src/server");
+            require("../../src/server").start();
         };
         startTheServer();
     })

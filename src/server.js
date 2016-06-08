@@ -1,10 +1,8 @@
 var express = require('express');
 
 var app = express();
-app.userSpace = {};
-app.userSpace.DB = {};
 
-app.userSpace.DB = {
+var inMemoryDB = {
     values: [ 
         {'id':'8', 'name':'john'},
         {'id':'7', 'name':'jane'},
@@ -47,7 +45,13 @@ app.get('/users', function(req, res) {
 });
 
 
-app.listen(3000);
 
-var Users = app
-module.exports = Users;
+appFactory = function(userRepository){
+    app.userSpace = {};
+    app.userSpace.DB = {};
+    app.userSpace.DB = userRepository || inMemoryDB;
+    app.listen(3000);
+}
+
+var Users = appFactory
+module.exports = {start: appFactory};
