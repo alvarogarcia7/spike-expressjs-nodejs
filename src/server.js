@@ -25,11 +25,7 @@ var DB = {
 
 app.get('/user/:userId', function(req, res) {
 
-    var findById = function(id){
-        return DB.findById(id);
-   };
-
-    var user = findById(req.params.userId);
+    var user = DB.findById(req.params.userId);
     if(user){
         return res.send(user);
     } else {
@@ -39,11 +35,7 @@ app.get('/user/:userId', function(req, res) {
 
 app.get('/users', function(req, res) {
 
-    var findAll = function(){
-        return DB.findAll();
-    };
-
-    var users = findAll();
+    var users = DB.findAll();
     return res.send(users);
 });
 
