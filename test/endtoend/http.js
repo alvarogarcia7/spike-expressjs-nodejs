@@ -20,7 +20,11 @@ var propertiesOf = function(obj){
 }
 
 var parseLaVanguardiaTitle = function(html){
-    var doc = parse5.parse(html);
+    var parseHtml = function(text){
+        return parse5.parse(text);
+    }
+
+    var doc = parseHtml(html);
 
     var node = doc.childNodes[1].childNodes[0].childNodes[7].childNodes[0];
     var title = node.value;
