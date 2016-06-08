@@ -2,24 +2,6 @@ var express = require('express');
 
 var app = express();
 
-var inMemoryDB = {
-    values: [],
-    findAll: function(){
-        return this.values;
-    },
-    findById: function(id){
-        var matching = this.values.filter(function(current){
-            return current.id === id;
-        });
-        if(matching.length > 0){
-            return matching[0];
-        } else {
-            return null;
-        }
-    },
-
-};
-
 app.use(function(req, res, next) {
 	req.users = app.userSpace.DB;
     next();
