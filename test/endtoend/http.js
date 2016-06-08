@@ -70,13 +70,13 @@ var inMemoryDB = {
 
 };
 
-
+var server = require("../../src/server");
 describe('REST API', function(){
     before(function(){
-        var startTheServer = function(){
-            require("../../src/server").start(inMemoryDB);
+        var start = function(server){
+            server.start(inMemoryDB);
         };
-        startTheServer();
+        start(server);
     })
     describe('gets the users', function(){
         it('gets a existing one', function(done){
