@@ -30,7 +30,7 @@ app.use(function(req, res, next) {
 
 app.get('/user/:userId', function(req, res) {
 
-    var user = DB.findById(req.params.userId);
+    var user = req.users.findById(req.params.userId);
     if(user){
         return res.send(user);
     } else {
