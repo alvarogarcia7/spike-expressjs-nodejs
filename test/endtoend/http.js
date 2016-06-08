@@ -1,12 +1,11 @@
 var request = require('superagent'); 
 var prefix = require('superagent-prefix')('http://lavanguardia.es:80');
 var should = require('should'); 
-var assert = require('assert');
 var parse5 = require('parse5');
 
 describe('canary', function() {
     it('truthy test', function () {
-      assert.equal(true, true);
+      (true).should.equal(true);
   });
 });
 
