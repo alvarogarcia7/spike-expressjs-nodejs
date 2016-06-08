@@ -2,13 +2,11 @@ var express = require('express');
 
 var app = express();
 
-var db = [ 
-    {'id':'8', 'name':'john'},
-    {'id':'7', 'name':'jane'},
-]; 
-
 var DB = {
-    values: db,
+    values: [ 
+        {'id':'8', 'name':'john'},
+        {'id':'7', 'name':'jane'},
+    ],
     findAll: function(){
         return this.values;
     },
