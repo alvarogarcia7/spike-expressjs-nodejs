@@ -58,8 +58,31 @@ describe('REST API', function(){
             should.not.exist(err);
             res.status.should.equal(200);
             var expectedUser = {"id":"8", "name":"john"};
-            (res.text).should.equal(expectedUser);
+            equalObjects(JSON.parse(res.text), expectedUser).should.equal(true);
             done();
         });
     });
 });
+
+//http://stackoverflow.com/a/2736070
+var equalObjects = function (obj1, obj2){
+    for (var p in obj1) {
+        if(typeof(obj1[p]) !== typeof(obj2[p])) return false;
+        if((obj1[p]===null) !== (obj2[p]===null)) return false;
+        switch (typeof(obj1[p])) {
+            case 'undefined':
+                if (typeof(obj2[p]) != 'undefined') return false;
+                break;
+            case 'object':
+                if(obj1[p]!==null && obj2[p]!==null && (obj1[p].constructor.toString() !== obj2[p].constructor.toString() || !obj1[p].equals(obj2[p]))) return false;
+                break;
+            case 'function':
+                if (p != 'equals' && obj1[p].toString() != obj2[p].toString()) return false;
+                break;
+            default:
+                if (obj1[p] !== obj2[p]) return false;
+        }
+    }
+    return true;
+
+};
