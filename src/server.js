@@ -49,7 +49,7 @@ var appFactory = function(userRepository){
     }
     app.userSpace = {};
     app.userSpace.DB = {};
-    app.userSpace.DB = userRepository || inMemoryDB;
+    app.userSpace.DB = userRepository;
     app.listen(3000);
 }
 
