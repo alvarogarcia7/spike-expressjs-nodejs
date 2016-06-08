@@ -23,6 +23,11 @@ var DB = {
 
 };
 
+app.use(function(req, res, next) {
+	req.users = DB;
+    next();
+});
+
 app.get('/user/:userId', function(req, res) {
 
     var user = DB.findById(req.params.userId);
