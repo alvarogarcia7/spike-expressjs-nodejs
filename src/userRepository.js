@@ -3,6 +3,10 @@ var values = [
         {'id':'7', 'name':'jane'},
     ];
 
+var newId = function(){
+    return '9';
+};
+
 
 
 var inMemoryDB = {
@@ -15,6 +19,16 @@ var inMemoryDB = {
             });
             return matching[0];
         },
+        add: function(user){
+            user = this.tag(user);
+            values.push(user);
+            return user;
+        },
+    tag: function(user){
+        user.id = newId();
+        return user;
+    },
+
     };
 
 module.exports = inMemoryDB;

@@ -18,8 +18,8 @@ describe('User Repository', function(){
         var newUser = repository.add({'name':'james'});
         
         var currentAmount = repository.findAll().length;
-        currentAmount.should.be(previousAmount + 1);
-        newUser.id.should.be('9');
+        currentAmount.should.equal(previousAmount + 1);
+        newUser.id.should.equal('9');
         done();
     });
 
