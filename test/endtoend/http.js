@@ -77,7 +77,10 @@ describe('REST API', function(){
             server.start(inMemoryDB);
         };
         start(server);
-    })
+    });
+    after(function(){
+        server.stop();
+    });
     describe('gets the users', function(){
         it('gets a existing one', function(done){
             request
