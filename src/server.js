@@ -4,8 +4,6 @@ var app = express();
 
 var inMemoryDB = {
     values: [ 
-        {'id':'8', 'name':'john'},
-        {'id':'7', 'name':'jane'},
     ],
     findAll: function(){
         return this.values;
