@@ -43,12 +43,19 @@ app.get('/users', function(req, res) {
 
 
 
-appFactory = function(userRepository){
+var appFactory = function(userRepository){
     app.userSpace = {};
     app.userSpace.DB = {};
     app.userSpace.DB = userRepository || inMemoryDB;
     app.listen(3000);
 }
 
-var Users = appFactory
-module.exports = {start: appFactory};
+var appDestructor = function(){
+
+    setTimeout(function() {
+            console.log('Blah blah blah blah extra-blah');
+            app.close();
+    }, 100);
+}
+
+module.exports = {start: appFactory, stop: appDestructor};
