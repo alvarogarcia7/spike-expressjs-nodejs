@@ -5,13 +5,24 @@ var app = express();
 var db = [ {'id':'8', 'name':'john'} ]; 
 
 app.get('/user/:userId', function(req, res) {
-	db.forEach(function(current, index){
-        if(current.id === req.params.userId){
-            res.send(current);
+
+    var findById = function(id){
+        var matching = db.filter(function(current){
+            return current.id === id;
+        });
+        if(matching.length > 0){
+            return matching[0];
         } else {
-            res.status(404).send({"message": "not found"});
+            return null;
         }
-	});
-})
+    };
+
+    var user = findById(req.params.userId);
+    if(user){
+        return res.send(user);
+    } else {
+        return res.status(404).send({"message": "not found"});
+    }
+});
 
 app.listen(3000);
