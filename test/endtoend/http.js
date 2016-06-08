@@ -50,17 +50,33 @@ describe('exercising the test framework', function(){
 });
 
 describe('REST API', function(){
-    it('gets the name', function(done){
-        request
-        .get("/user/8")
-        .use(prefixREST)
-        .end(function(err,res){
-            should.not.exist(err);
-            res.status.should.equal(200);
-            var expectedUser = {"id":"8", "name":"john"};
-            equalObjects(JSON.parse(res.text), expectedUser).should.equal(true);
-            done();
+    describe('gets the users', function(){
+        it('gets the existing one', function(done){
+            request
+            .get("/user/8")
+            .use(prefixREST)
+            .end(function(err,res){
+                should.not.exist(err);
+                res.status.should.equal(200);
+                var expectedUser = {"id":"8", "name":"john"};
+                equalObjects(JSON.parse(res.text), expectedUser).should.equal(true);
+                done();
+            });
         });
+
+        it('gets the non-existing one', function(done){
+            request
+            .get("/user/NONEXISTING")
+            .use(prefixREST)
+            .end(function(err,res){
+                should.exist(err);
+                res.status.should.equal(404);
+                var expectedError  = {"message":"not found"};
+                equalObjects(JSON.parse(res.text), expectedError).should.equal(true);
+                done();
+            });
+        });
+
     });
 });
 
