@@ -23,4 +23,17 @@ describe('User Repository', function(){
         done();
     });
 
+    it('stores more than a user', function(done){
+        var previousAmount = repository.findAll().length;
+
+        var newUser9 = repository.add({'name':'james'});
+        var newUser10 = repository.add({'name':'james'});
+        
+        var currentAmount = repository.findAll().length;
+        currentAmount.should.equal(previousAmount + 2);
+        newUser9.id.should.equal('9');
+        newUser10.id.should.equal('10');
+        done();
+    });
+
 });
