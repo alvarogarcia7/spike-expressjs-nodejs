@@ -1,5 +1,6 @@
 var request = require('superagent'); 
-var prefix = require('superagent-prefix')('http://lavanguardia.es:80');
+var prefixLV = require('superagent-prefix')('http://lavanguardia.es:80');
+var prefixREST = require('superagent-prefix')('http://localhost:3000');
 var should = require('should'); 
 var parse5 = require('parse5');
 
@@ -35,7 +36,7 @@ describe('exercising the test framework', function(){
     it('gets the title', function(done){
         request
         .get("/")
-        .use(prefix)
+        .use(prefixLV)
         .end(function(err,res){
             should.not.exist(err);
             res.status.should.equal(200);
@@ -43,6 +44,21 @@ describe('exercising the test framework', function(){
             var title = parseLaVanguardiaTitle(res.text);
             title.should.equal("LaVanguardia.com - Noticias, actualidad y última hora en Catalunya, España y el mundo");
 
+            done();
+        });
+    });
+});
+
+describe('REST API', function(){
+    it('gets the name', function(done){
+        request
+        .get("/user/8")
+        .use(prefixREST)
+        .end(function(err,res){
+            should.not.exist(err);
+            res.status.should.equal(200);
+            var expectedUser = {"id":"8", "name":"john"};
+            (res.text).should.equal(expectedUser);
             done();
         });
     });
