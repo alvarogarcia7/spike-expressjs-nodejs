@@ -48,3 +48,6 @@ app.get('/users', function(req, res) {
 
 
 app.listen(3000);
+
+var Users = app
+module.exports = Users;

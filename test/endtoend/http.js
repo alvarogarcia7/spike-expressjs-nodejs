@@ -50,6 +50,12 @@ describe('exercising the test framework', function(){
 });
 
 describe('REST API', function(){
+    before(function(){
+        var startTheServer = function(){
+            require("../../src/server");
+        };
+        startTheServer();
+    })
     describe('gets the users', function(){
         it('gets a existing one', function(done){
             request
