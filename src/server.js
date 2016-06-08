@@ -3,8 +3,7 @@ var express = require('express');
 var app = express();
 
 var inMemoryDB = {
-    values: [ 
-    ],
+    values: [],
     findAll: function(){
         return this.values;
     },
