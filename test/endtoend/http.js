@@ -3,6 +3,7 @@ var superagent = require('superagent');
 //var assert = require('chai').assert;
 var should = require('should'); 
 var assert = require('assert');
+var parse5 = require('parse5');
 
 describe('canary', function() {
     it('truthy test', function () {
@@ -10,19 +11,46 @@ describe('canary', function() {
   });
 });
 
+var propertiesOf = function(obj){
+    var properties = [];
+    for (var name in obj) {
+        if (obj.hasOwnProperty(name)) {
+            properties.push(name);	
+        }
+    }
+    return properties;
+}
 
 describe('REST API', function(){
     var url = 'http://lavanguardia.es:80';
     var server = request('http://lavanguardia.es:80');
     it('gets the names', function(done){
-		superagent
-		.get(url)
-		.end(function(err,res){
+        superagent
+        .get(url)
+        .end(function(err,res){
             should.not.exist(err);
+            res.status.should.equal(200);
+            var doc = parse5.parse(res.text);
 
-		  res.status.should.equal(200);
-          console.log(res.body);
-		  done();
-		});
+            var node = doc.childNodes[1].childNodes[0].childNodes[7].childNodes[0];
+
+//            node.childNodes.forEach(function(current, index){
+//                var nodeName = current.nodeName;
+//                if(nodeName === "title"){
+//                    console.log(nodeName);
+//                    console.log(index);
+//                }
+//            });
+
+            //console.log(node);
+
+            var title = node.value;
+
+            console.log(title);
+
+            //console.log(propertiesOf(node));
+
+            done();
+        });
     });
 });
