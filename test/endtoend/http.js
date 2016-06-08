@@ -33,22 +33,9 @@ describe('REST API', function(){
             var doc = parse5.parse(res.text);
 
             var node = doc.childNodes[1].childNodes[0].childNodes[7].childNodes[0];
-
-//            node.childNodes.forEach(function(current, index){
-//                var nodeName = current.nodeName;
-//                if(nodeName === "title"){
-//                    console.log(nodeName);
-//                    console.log(index);
-//                }
-//            });
-
-            //console.log(node);
-
             var title = node.value;
 
             console.log(title);
-
-            //console.log(propertiesOf(node));
 
             done();
         });
