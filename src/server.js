@@ -44,6 +44,9 @@ app.get('/users', function(req, res) {
 
 
 var appFactory = function(userRepository){
+    if(!userRepository){
+        throw new Error("Cannot start server");
+    }
     app.userSpace = {};
     app.userSpace.DB = {};
     app.userSpace.DB = userRepository || inMemoryDB;
