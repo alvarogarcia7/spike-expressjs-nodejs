@@ -33,7 +33,7 @@ var parseLaVanguardiaTitle = function(html){
 }
 
 describe('exercising the test framework', function(){
-    it('gets the title', function(done){
+    xit('gets the title', function(done){
         request
         .get("/")
         .use(prefixLV)
@@ -49,27 +49,7 @@ describe('exercising the test framework', function(){
     });
 });
 
-var inMemoryDB = {
-    values: [ 
-        {'id':'8', 'name':'john'},
-        {'id':'7', 'name':'jane'},
-    ],
-    findAll: function(){
-        return this.values;
-    },
-    findById: function(id){
-        var matching = this.values.filter(function(current){
-            return current.id === id;
-        });
-        if(matching.length > 0){
-            return matching[0];
-        } else {
-            return null;
-        }
-    },
-
-};
-
+var inMemoryDB = require("../../src/userRepository");
 var server = require("../../src/server");
 describe('REST API', function(){
     before(function(){
