@@ -9,4 +9,9 @@ describe('User Repository', function(){
         done();
     });
 
+    it('retrieves all users', function(done){
+        (repository.findAll().length).should.equal(2);
+        done();
+    });
+
 });
