@@ -1,5 +1,6 @@
 var request = require('superagent'); 
 var superagent = require('superagent'); 
+var prefix = require('superagent-prefix')('http://lavanguardia.es:80');
 //var assert = require('chai').assert;
 var should = require('should'); 
 var assert = require('assert');
@@ -26,7 +27,8 @@ describe('REST API', function(){
     var server = request('http://lavanguardia.es:80');
     it('gets the names', function(done){
         superagent
-        .get(url)
+        .get("/")
+        .use(prefix)
         .end(function(err,res){
             should.not.exist(err);
             res.status.should.equal(200);
