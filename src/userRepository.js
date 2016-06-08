@@ -10,11 +10,7 @@ var inMemoryDB = {
         var matching = this.values.filter(function(current){
             return current.id === id;
         });
-        if(matching.length > 0){
-            return matching[0];
-        } else {
-            return null;
-        }
+        return matching[0];
     },
 
 };
