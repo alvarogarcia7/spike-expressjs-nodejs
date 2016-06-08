@@ -12,4 +12,15 @@ describe('User Repository', function(){
         done();
     });
 
+    it('stores a user', function(done){
+        var previousAmount = repository.findAll().length;
+
+        var newUser = repository.add({'name':'james'});
+        
+        var currentAmount = repository.findAll().length;
+        currentAmount.should.be(previousAmount + 1);
+        newUser.id.should.be('9');
+        done();
+    });
+
 });
