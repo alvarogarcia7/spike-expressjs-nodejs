@@ -12,4 +12,11 @@ describe('User Repository', function(){
         done();
     });
 
+    it('should not allow for encapsulation to be broken', function(done){
+        repository.values.push({'id':'9'});
+
+        should.equal(repository.findById('9'), undefined)
+        done();
+    });
+
 });
