@@ -40,7 +40,7 @@ app.get('/user/:userId', function(req, res) {
 
 app.get('/users', function(req, res) {
 
-    var users = DB.findAll();
+    var users = req.users.findAll();
     return res.send(users);
 });
 
