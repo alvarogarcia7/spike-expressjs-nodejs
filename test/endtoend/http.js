@@ -31,8 +31,8 @@ var parseLaVanguardiaTitle = function(html){
     return title
 }
 
-describe('REST API', function(){
-    it('gets the names', function(done){
+describe('exercising the test framework', function(){
+    it('gets the title', function(done){
         request
         .get("/")
         .use(prefix)
