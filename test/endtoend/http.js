@@ -49,12 +49,12 @@ describe('exercising the test framework', function(){
     });
 });
 
-var inMemoryDB = require("../../src/userRepository");
+var userRepository = require("../../src/userRepository");
 var server = require("../../src/server");
 describe('REST API', function(){
     before(function(){
         var start = function(server){
-            server.start(inMemoryDB);
+            server.start(userRepository);
         };
         start(server);
     });
