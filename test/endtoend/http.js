@@ -35,7 +35,9 @@ describe('REST API', function(){
             var node = doc.childNodes[1].childNodes[0].childNodes[7].childNodes[0];
             var title = node.value;
 
-            console.log(title);
+            //console.log(title);
+
+            title.should.equal("LaVanguardia.com - Noticias, actualidad y última hora en Catalunya, España y el mundo");
 
             done();
         });
