@@ -7,9 +7,12 @@ var db = [
     {'id':'7', 'name':'jane'},
 ]; 
 
-app.get('/user/:userId', function(req, res) {
-
-    var findById = function(id){
+var DB = {
+    db: db,
+    findAll: function(){
+        return db;
+    },
+    findById: function(id){
         var matching = db.filter(function(current){
             return current.id === id;
         });
@@ -18,7 +21,15 @@ app.get('/user/:userId', function(req, res) {
         } else {
             return null;
         }
-    };
+    },
+
+};
+
+app.get('/user/:userId', function(req, res) {
+
+    var findById = function(id){
+        return DB.findById(id);
+   };
 
     var user = findById(req.params.userId);
     if(user){
@@ -31,7 +42,7 @@ app.get('/user/:userId', function(req, res) {
 app.get('/users', function(req, res) {
 
     var findAll = function(){
-        return db;
+        return DB.findAll();
     };
 
     var users = findAll();
