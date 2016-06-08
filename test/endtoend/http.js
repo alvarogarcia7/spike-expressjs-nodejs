@@ -19,6 +19,14 @@ var propertiesOf = function(obj){
     return properties;
 }
 
+var parseLaVanguardiaTitle = function(html){
+    var doc = parse5.parse(html);
+
+    var node = doc.childNodes[1].childNodes[0].childNodes[7].childNodes[0];
+    var title = node.value;
+    return title
+}
+
 describe('REST API', function(){
     it('gets the names', function(done){
         request
@@ -27,13 +35,8 @@ describe('REST API', function(){
         .end(function(err,res){
             should.not.exist(err);
             res.status.should.equal(200);
-            var doc = parse5.parse(res.text);
 
-            var node = doc.childNodes[1].childNodes[0].childNodes[7].childNodes[0];
-            var title = node.value;
-
-            //console.log(title);
-
+            var title = parseLaVanguardiaTitle(res.text);
             title.should.equal("LaVanguardia.com - Noticias, actualidad y última hora en Catalunya, España y el mundo");
 
             done();
