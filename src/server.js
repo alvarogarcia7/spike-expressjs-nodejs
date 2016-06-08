@@ -8,12 +8,12 @@ var db = [
 ]; 
 
 var DB = {
-    db: db,
+    values: db,
     findAll: function(){
-        return db;
+        return this.values;
     },
     findById: function(id){
-        var matching = db.filter(function(current){
+        var matching = this.values.filter(function(current){
             return current.id === id;
         });
         if(matching.length > 0){
