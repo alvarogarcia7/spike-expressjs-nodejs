@@ -1,6 +1,4 @@
 var repository = require('../../src/userRepository');
-require('should'); 
-var chai = require('chai');
 
 describe('User Repository', function(){
 
