@@ -1,8 +1,10 @@
 var express = require('express');
 
 var app = express();
+app.userSpace = {};
+app.userSpace.DB = {};
 
-var DB = {
+app.userSpace.DB = {
     values: [ 
         {'id':'8', 'name':'john'},
         {'id':'7', 'name':'jane'},
@@ -24,7 +26,7 @@ var DB = {
 };
 
 app.use(function(req, res, next) {
-	req.users = DB;
+	req.users = app.userSpace.DB;
     next();
 });
 
