@@ -114,7 +114,6 @@ describe('REST API', function(){
             .end(function(err,res){
                 should.not.exist(err);
                 res.status.should.equal(200);
-                console.log(res.text);
                 var expectedUsers = [ {"id":"8", "name":"john"} ,
                                       {"id":"7", "name":"jane"},
                 ];

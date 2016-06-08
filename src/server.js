@@ -38,7 +38,6 @@ var appFactory = function(userRepository){
 var appDestructor = function(){
 
     setTimeout(function() {
-            console.log('Blah blah blah blah extra-blah');
             app.close();
     }, 100);
 }
