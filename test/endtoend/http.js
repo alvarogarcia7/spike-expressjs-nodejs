@@ -1,6 +1,5 @@
 var request = require('superagent'); 
 var prefix = require('superagent-prefix')('http://lavanguardia.es:80');
-//var assert = require('chai').assert;
 var should = require('should'); 
 var assert = require('assert');
 var parse5 = require('parse5');
