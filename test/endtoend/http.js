@@ -83,9 +83,14 @@ describe('REST API', function(){
             .end(function(err,res){
                 should.not.exist(err);
                 res.status.should.equal(200);
-                var expectedUsers = [ {"id":"7", "name":"jane"},
-                                     {"id":"8", "name":"john"} ];
-                equalObjects(JSON.parse(res.text), expectedUsers).should.equal(true);
+                console.log(res.text);
+                var expectedUsers = [ {"id":"8", "name":"john"} ,
+                                      {"id":"7", "name":"jane"},
+                ];
+                response = JSON.parse(res.text);
+                expectedUsers.forEach(function(current, index){
+                    equalObjects(response[index], expectedUsers[index]).should.equal(true);
+                });
                 done();
             });
         });

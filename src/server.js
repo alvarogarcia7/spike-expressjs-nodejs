@@ -28,4 +28,15 @@ app.get('/user/:userId', function(req, res) {
     }
 });
 
+app.get('/users', function(req, res) {
+
+    var findAll = function(){
+        return db;
+    };
+
+    var users = findAll();
+    return res.send(users);
+});
+
+
 app.listen(3000);
