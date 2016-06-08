@@ -51,7 +51,7 @@ describe('exercising the test framework', function(){
 
 describe('REST API', function(){
     describe('gets the users', function(){
-        it('gets the existing one', function(done){
+        it('gets a existing one', function(done){
             request
             .get("/user/8")
             .use(prefixREST)
@@ -59,6 +59,18 @@ describe('REST API', function(){
                 should.not.exist(err);
                 res.status.should.equal(200);
                 var expectedUser = {"id":"8", "name":"john"};
+                equalObjects(JSON.parse(res.text), expectedUser).should.equal(true);
+                done();
+            });
+        });
+        it('gets another existing one', function(done){
+            request
+            .get("/user/7")
+            .use(prefixREST)
+            .end(function(err,res){
+                should.not.exist(err);
+                res.status.should.equal(200);
+                var expectedUser = {"id":"7", "name":"jane"};
                 equalObjects(JSON.parse(res.text), expectedUser).should.equal(true);
                 done();
             });
