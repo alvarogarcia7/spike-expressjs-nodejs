@@ -14,6 +14,15 @@ describe('User Repository', function(){
         done();
     });
 
+    it('can retrieve a stored a user', function(done){
+        var newUser = repository.add({'name':'james'});
+        newUser.id.should.equal('1');
+
+        var insertedUser = repository.findById('1');
+
+        insertedUser.id.should.equal('1');
+        done();
+    });
 
 
 
