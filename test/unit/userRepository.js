@@ -6,6 +6,16 @@ describe('User Repository', function(){
     beforeEach(function(){
         repository = new repository_.instance();
     });
+    
+    it('sets the id on the passed user', function(done){
+        var newUser = repository.add({'name':'james'});
+        
+        newUser.id.should.equal('1');
+        done();
+    });
+
+
+
 
     it('stores a user', function(done){
         var previousAmount = repository.findAll().length;
