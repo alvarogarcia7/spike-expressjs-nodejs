@@ -3,6 +3,7 @@ var prefixLV = require('superagent-prefix')('http://lavanguardia.es:80');
 var prefixREST = require('superagent-prefix')('http://localhost:3000');
 var should = require('should'); 
 var parse5 = require('parse5');
+var sinon = require('sinon');
 
 describe('canary', function() {
     it('truthy test', function () {
@@ -54,15 +55,25 @@ var server = require("../../src/server");
 describe('REST API', function(){
     before(function(){
         var start = function(server){
-            server.start(new userRepository.instance());
+            var userRepository_ = userRepository.instance();
+            var stub = sinon.stub(userRepository_, "findById");
+            stub.withArgs('8').returns({"id":"8", "name":"john"});
+            stub.withArgs('7').returns({"id":"7", "name":"jane"});
+
+            var stubAll = sinon.stub(userRepository_, "findAll");
+            stubAll.returns([ 
+                    {'id':'8', 'name':'john'}, 
+                    {'id':'7', 'name':'jane'},
+            ]);
+
+            server.start(userRepository_);
         };
         start(server);
     });
-    after(function(){
-        server.stop();
-    });
     describe('gets the users', function(){
         it('gets a existing one', function(done){
+
+
             request
             .get("/user/8")
             .use(prefixREST)
@@ -101,6 +112,7 @@ describe('REST API', function(){
                 expectedUsers.forEach(function(current, index){
                     equalObjects(response[index], expectedUsers[index]).should.equal(true);
                 });
+                response.length.should.equal(expectedUsers.length);
                 done();
             });
         });

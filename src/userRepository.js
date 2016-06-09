@@ -1,8 +1,5 @@
 var repository = function(){
-    var values = [ 
-            {'id':'8', 'name':'john'},
-            {'id':'7', 'name':'jane'},
-        ];
+    var values = [];
 
     var currentId = 1;
 
