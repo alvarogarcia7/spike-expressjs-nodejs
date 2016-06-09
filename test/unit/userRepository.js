@@ -34,14 +34,10 @@ describe('User Repository', function(){
         done();
     });
 
-    it('stores more than a user', function(done){
-        var previousAmount = repository.findAll().length;
-
+    it('different ids are assigned for each call', function(done){
         var newUser9 = repository.add({'name':'james'});
         var newUser10 = repository.add({'name':'johh'});
-        
-        var currentAmount = repository.findAll().length;
-        currentAmount.should.equal(previousAmount + 2);
+
         newUser9.id.should.equal('1');
         newUser10.id.should.equal('2');
         done();
