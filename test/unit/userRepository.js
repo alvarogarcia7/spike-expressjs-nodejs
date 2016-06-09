@@ -1,6 +1,11 @@
-var repository = require('../../src/userRepository');
+var repository_ = require('../../src/userRepository');
 
+var repo;
 describe('User Repository', function(){
+
+    beforeEach(function(){
+        repository = new repository_.instance();
+    });
 
     it('retrieves users', function(done){
         (repository.findById('8').id).should.equal('8');
@@ -27,7 +32,7 @@ describe('User Repository', function(){
         var previousAmount = repository.findAll().length;
 
         var newUser9 = repository.add({'name':'james'});
-        var newUser10 = repository.add({'name':'james'});
+        var newUser10 = repository.add({'name':'johh'});
         
         var currentAmount = repository.findAll().length;
         currentAmount.should.equal(previousAmount + 2);

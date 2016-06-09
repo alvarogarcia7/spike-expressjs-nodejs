@@ -54,7 +54,7 @@ var server = require("../../src/server");
 describe('REST API', function(){
     before(function(){
         var start = function(server){
-            server.start(userRepository);
+            server.start(new userRepository.instance());
         };
         start(server);
     });
