@@ -24,18 +24,13 @@ describe('User Repository', function(){
         done();
     });
 
-
-
-    it('stores a user', function(done){
+    it('storing a user increases the amount of users', function(done){
         var previousAmount = repository.findAll().length;
 
         var newUser = repository.add({'name':'james'});
         
         var currentAmount = repository.findAll().length;
-        var insertedUser = repository.findById('1');
         currentAmount.should.equal(previousAmount + 1);
-        newUser.id.should.equal('1');
-        insertedUser.id.should.equal('1');
         done();
     });
 
