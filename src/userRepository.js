@@ -4,7 +4,7 @@ var repository = function(){
             {'id':'7', 'name':'jane'},
         ];
 
-    var currentId = 9;
+    var currentId = 1;
 
     var newId = function(){
         var id = currentId.toFixed(0);

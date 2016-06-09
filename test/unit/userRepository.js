@@ -24,7 +24,7 @@ describe('User Repository', function(){
         
         var currentAmount = repository.findAll().length;
         currentAmount.should.equal(previousAmount + 1);
-        newUser.id.should.equal('9');
+        newUser.id.should.equal('1');
         done();
     });
 
@@ -36,8 +36,8 @@ describe('User Repository', function(){
         
         var currentAmount = repository.findAll().length;
         currentAmount.should.equal(previousAmount + 2);
-        newUser9.id.should.equal('9');
-        newUser10.id.should.equal('10');
+        newUser9.id.should.equal('1');
+        newUser10.id.should.equal('2');
         done();
     });
 
