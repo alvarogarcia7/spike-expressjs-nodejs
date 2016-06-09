@@ -35,11 +35,11 @@ describe('User Repository', function(){
     });
 
     it('different ids are assigned for each call', function(done){
-        var newUser9 = repository.add({'name':'james'});
-        var newUser10 = repository.add({'name':'james'});
+        var user1 = repository.add({'name':'james'});
+        var user2 = repository.add({'name':'james'});
 
-        newUser9.id.should.equal('1');
-        newUser10.id.should.equal('2');
+        user1.id.should.equal('1');
+        user2.id.should.equal('2');
         done();
     });
 
